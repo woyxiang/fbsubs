@@ -15,11 +15,11 @@ namespace fbsubs
             declare function isID (oneLine as string) as boolean
             declare function isTimeline (oneLine as string) as boolean
             declare function timeStrToMs (oneLine as string) as integer
+            declare function msToTimeStr(byval totalMs as integer) as string
         public:
             declare constructor()
             declare destructor()
             declare function fromSrt(subs() as subtitle,srtFileName as string) as integer
             declare function toSrt(subs() as subtitle, outSrtName as string) as integer
-            declare function msToTimeStr(byval totalMs as integer) as string
     end type    
 end namespace
