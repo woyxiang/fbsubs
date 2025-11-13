@@ -10,3 +10,5 @@ for i as integer = 1 to ubound(subs)
     print subs(i).id & " " & subs(i).startTime & " " & subs(i).endTime & " " & subs(i).text
     sleep 100
 next
+
+parser.toSrt(subs(), "out.srt")

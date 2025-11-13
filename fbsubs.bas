@@ -120,4 +120,38 @@ function SubtitleParser.fromSrt(subs() as subtitle, srtFileName as string) as in
     close #1
     return err
 end function
+
+function SubtitleParser.msToTimeStr(byval totalMs as integer) as string
+    dim as integer hh, mm, ss, ms
+
+    ' 计算各部分
+    hh = totalMs \ 3600000
+    totalMs = totalMs mod 3600000
+
+    mm = totalMs \ 60000
+    totalMs = totalMs mod 60000
+
+    ss = totalMs \ 1000
+    ms = totalMs mod 1000
+
+    ' 格式化输出（确保补零）
+    return right("0" & str(hh), 2) & ":" & _
+           right("0" & str(mm), 2) & ":" & _
+           right("0" & str(ss), 2) & "," & _
+           right("00" & str(ms), 3)
+end function
+
+function SubtitleParser.toSrt(subs() as subtitle, outSrtName as string) as integer
+    open outSrtName for output encoding "utf8" as #1
+    
+    for i as integer = 1 to ubound(subs)
+        print #1, subs(i).id
+        print #1, msToTimeStr(subs(i).startTime) & " --> " & msToTimeStr(subs(i).endTime)
+        print #1, subs(i).text
+        print #1,
+    next
+
+    close #1
+    return err
+end function
 end namespace
