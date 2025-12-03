@@ -1,14 +1,17 @@
 #cmdline "../fbsubs.bas"
 #include "../fbsubs.bi"
-using fbsubs
-dim as SubtitleParser parser
-dim as subtitle subs()
+' Create parser instance
+dim as fbsubs.SubtitleParser parser
+
+' Load subtitles
+dim as fbsubs.subtitle subs()
 parser.fromSrt(subs(), "zh.srt")
 
-
+' Modify subtitles (example: shift all times by 1000ms)
 for i as integer = 1 to ubound(subs)
-    print subs(i).id & " " & subs(i).startTime & " " & subs(i).endTime & " " & subs(i).text
-    sleep 100
+    subs(i).startTime += 1000
+    subs(i).endTime += 1000
 next
 
+' Save subtitles
 parser.toSrt(subs(), "out.srt")

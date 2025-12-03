@@ -1,0 +1,44 @@
+= fbsubs
+
+A FreeBASIC library for parsing and generating SubRip (SRT) subtitle files.
+
+== Overview
+
+The `fbsubs` library provides a simple interface for reading SRT files into memory, manipulating subtitle data programmatically, and writing modified subtitles back to disk in valid SRT format. 
+
+== Quick Start
+
+[source,FreeBASIC]
+----
+#cmdline "fbsubs.bas"
+#include "fbsubs.bi"
+
+' Create parser instance
+dim as fbsubs.SubtitleParser parser
+
+' Load subtitles
+dim as fbsubs.subtitle subs()
+parser.fromSrt(subs(), "input.srt")
+
+' Modify subtitles (example: shift all times by 1000ms)
+for i as integer = 1 to ubound(subs)
+    subs(i).startTime += 1000
+    subs(i).endTime += 1000
+next
+
+' Save subtitles
+parser.toSrt(subs(), "output.srt")
+----
+
+== Subtitle Structure
+
+[source,FreeBASIC]
+----
+type Subtitle
+    id as uinteger        ' Sequence number
+    startTime as uinteger ' Start time in milliseconds
+    endTime as uinteger   ' End time in milliseconds
+    text as wstring * 256 ' Subtitle text
+end type
+----
+
