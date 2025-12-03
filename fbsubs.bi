@@ -8,7 +8,7 @@ namespace fbsubs
 
     type SubtitleParser
         private:
-            as byte foo 'remove this we'll get an error 256
+            as byte foo 'we'll get an error 256 if we remove this 
             declare function addBomForUTF8 (byref fileName as string) as integer
             declare function isDigits(number as string) as boolean
             declare function isFormatedTime (timeline as string) as boolean
