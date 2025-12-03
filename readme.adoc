@@ -1,5 +1,8 @@
 = fbsubs
 
+https://deepwiki.com/woyxiang/fbsubs[image:https://deepwiki.com/badge.svg[Ask
+DeepWiki]]
+
 A FreeBASIC library for parsing and generating SubRip (SRT) subtitle files.
 
 == Overview
